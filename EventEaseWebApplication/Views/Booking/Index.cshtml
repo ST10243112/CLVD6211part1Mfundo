@@ -1,0 +1,62 @@
+﻿@model IEnumerable<EventEaseWebApplication.Models.Booking>
+
+@{
+    ViewData["Title"] = "Booking Information";
+}
+
+<h1>Bookings Table</h1>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VenueId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VenueId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.BookingId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.BookingId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.BookingId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
